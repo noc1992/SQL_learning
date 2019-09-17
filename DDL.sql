@@ -1,0 +1,249 @@
+----실전문제 
+----1
+--create table t_tbl1(
+--t_empno number(4) not null,
+--t_ename varchar2(10),
+--t_job varchar2(9),
+--t_mgr number(4),
+--t_hiredate date,
+--t_sal number(7,2),
+--t_comm number(7,2),
+--t_deptno number(2),
+--constraint t_tbl1_kp primary key(t_empno));
+--
+----3
+--insert into t_tbl1 values ('7369', 'smith', 'clerk', 7902,to_date('1980-12-17','yyyy-mm-dd'), 800, null, 20);
+--insert into t_tbl1 values ('7566', 'jones', 'manager', 7839,to_date('1981-04-02','yyyy-mm-dd'), 2975, null, 20);
+--insert into t_tbl1 values ('7788', 'scott', 'analyst', 7566,to_date('1987-07-13','yyyy-mm-dd'), 3000, null, 20);
+--insert into t_tbl1 values ('7876', 'adams', 'clerk', 7788,to_date('1987-07-13','yyyy-mm-dd'), 1100, null, 20);
+--insert into t_tbl1 values ('7902', 'ford', 'analyst', 7566,to_date('1981-12-03','yyyy-mm-dd'), 3000, null, 20);
+--
+----5
+--create table t_emp10(
+--t_empno number(4) not null,
+--t_ename varchar2(10),
+--t_job varchar2(9),
+--t_mgr number(4),
+--t_hiredate date,
+--t_sal number(7,2),
+--t_comm number(7,2),
+--t_deptno number(2),
+--constraint t_emp10_pk primary key(t_empno));
+--
+--insert into t_emp10 values ('7782', 'clark', 'manager', 7902,to_date('1981-06-09','yyyy-mm-dd'), 2450, null, 10);
+--insert into t_emp10 values ('7839', 'king', 'president', null,to_date('1981-11-17','yyyy-mm-dd'), 5000, null, 10);
+--insert into t_emp10 values ('7934', 'miller', 'clerk', 7782,to_date('1982-01-23','yyyy-mm-dd'), 1300, null, 10);
+--
+----7 
+--alter table t_tbl1
+--add (t_gender char(1));
+--
+----9 
+--alter table t_tbl1
+--modify(t_gender varchar2(10));
+--
+----11
+--truncate table t_tbl1;
+--
+----13 
+--create table t_emp3(
+--t_empno number(4) not null,
+--t_ename varchar2(10),
+--t_job varchar2(9),
+--t_mgr number(4),
+--t_hiredate date,
+--t_sal number(7,2),
+--t_comm number(7,2),
+--t_deptno number(2),
+--constraint t_emp3_pk primary key(t_empno));
+--
+----15
+--select *
+--from USER_CONSTRAINTS
+--where table_name='T_TBL1';
+--
+----17
+--create table t_emp2(
+--t_empno number(4) not null,
+--t_ename varchar2(10),
+--t_job varchar2(9),
+--t_mgr number(4),
+--t_hiredate date,
+--t_sal number(7,2),
+--t_comm number(7,2),
+--t_deptno number(2)
+--constraint t_emp2_fk references dept(deptno),
+--constraint t_emp2_pk primary key(t_empno));
+--
+--alter table t_emp2
+--enable CONSTRAINT t_emp2_fk;
+--
+----19
+--drop table t_emp2;
+--
+----21
+--create or replace view v_emp20
+--as select *
+--        from emp
+--        where deptno = '20';
+--        
+--        
+--select *
+--from v_emp20;
+--
+----22
+--create or replace view v_emp_dept
+--as select empno,ename,dname
+--                from emp, dept
+--                where emp.deptno =dept.deptno;
+----23
+--SELECT *
+--from v_emp_dept;
+--
+----25
+--select empno, ename, hiredate
+--from (select empno, ename, hiredate
+--        from emp 
+--        where hiredate is not null
+--        order by hiredate desc)
+--where rownum < = 5;
+--
+----27
+--select dname
+--from (select dname,avg(sal)
+--            from emp,dept
+--            where emp.deptno = dept.deptno
+--            group by dname
+--            order by 2 desc)
+--where rownum <= 2;
+--
+--
+--
+----연습문제
+--create table customer(
+--c_code varchar2(4) not null,
+--c_name varchar2(30),
+--c_ceo varchar2(12),
+--c_addr VARCHAR2(100),
+--c_phone varchar(13),
+--constraint customer_pk primary key(c_code));
+--
+--create table trade(
+--t_seq number not null,
+--p_code char(3),
+--c_code varchar2(4),
+--t_date date,
+--t_qty number,
+--t_cost number,
+--t_tax number,
+--constraint trade_pk primary key(t_seq));
+--
+--create table product(
+--p_code char(3) not null,
+--c_name varchar2(30),
+--p_cost number,
+--p_group varchar2(30),
+--constraint product_pk primary key(p_code));
+--
+--CREATE TABLE STOCK(
+--P_CODE CHAR(3) not null,
+--S_QTY NUMBER not null,
+--S_LASTDATE DATE,
+--CONSTRAINT P_STK_PK PRIMARY KEY(P_CODE));
+--
+----3
+--insert into product values ('101','19인치 모니터',150000,'모니터');
+--insert into product values ('102','22인치 모니터',200000,'모니터');
+--insert into product values ('103','25인치 모니터',260000,'모니터');
+--insert into product values ('201','유선마우스',7000,'마우스');
+--insert into product values ('202','무선마우스',18000,'마우스');
+--insert into product values ('301','유선키보드',8000,'키보드');
+--insert into product values ('302','무선키보드',22000,'키보드');
+--insert into product values ('401','2채널 스피커',10000,'스피커');
+--insert into product values ('402','5.1채널 스피커',120000,'스피커');
+--
+----5생성함
+--
+----7
+--insert into trade
+--values (61, '131', '101', to_date('2016-04-01', 'yyyy-mm-dd'),10, 150000, 150000);
+--insert into trade
+--values (5, '102', '102', to_date('2016-04-26', 'yyyy-mm-dd'),8, 200000, 160000);
+--insert into trade
+--values (8, '103', '101', to_date('2016-05-20', 'yyyy-mm-dd'),2, 260000, 52000);
+--insert into trade
+--values (3, '201', '103', to_date('2016-04-13', 'yyyy-mm-dd'),7, 7000, 4900);
+--insert into trade
+--values (2, '201', '101', to_date('2016-04-12', 'yyyy-mm-dd'),5, 7000, 3500);
+--insert into trade
+--values (9, '202', '104', to_date('2016-06-02', 'yyyy-mm-dd'),8, 18000, 14400);
+--insert into trade
+--values (6, '301', '103', to_date('2016-05-02', 'yyyy-mm-dd'),12, 8000, 9600);
+--insert into trade
+--values (10, '302', '103', to_date('2016-06-09', 'yyyy-mm-dd'),9, 22000, 19800);
+--insert into trade
+--values (4, '401', '104', to_date('2016-04-20', 'yyyy-mm-dd'),15, 10000, 15000);
+--insert into trade
+--values (11, '401', '105', to_date('2016-06-15', 'yyyy-mm-dd'),20, 10000, 20000);
+--insert into trade
+--values (7, '402', '102', to_date('2016-05-08', 'yyyy-mm-dd'),5, 120000, 60000);
+--
+----9 생성함
+--
+----11
+--insert into customer values('101','늘푸른회사','김수종','경기도 안산시', '010-1234-5678');
+--insert into customer values('102','사랑과바다','박나리','경기도 평택시', '010-1122-3344');
+--insert into customer values('103','대한회사','이민수','서울시 구로구', '010-3785-8809');
+--insert into customer values('104','하얀기판','허진수','경상북도 포항시', '010-8569-3468');
+--insert into customer values('105','한마음한뜻','하민우','인천시 남동구', '010-9455-6033');
+--
+----13 생성함
+--
+----15
+--insert into stock values ('101', 50, to_date('2016-04-01', 'yyyy-mm-dd'));
+--insert into stock values ('102', 20, to_date('2016-04-26', 'yyyy-mm-dd'));
+--insert into stock values ('103', 5, to_date('2016-05-20', 'yyyy-mm-dd'));
+--insert into stock values ('201', 2, to_date('2016-04-13', 'yyyy-mm-dd'));
+--insert into stock values ('202', 15, to_date('2016-06-02', 'yyyy-mm-dd'));
+--insert into stock values ('301', 0, to_date('2016-05-02', 'yyyy-mm-dd'));
+--insert into stock values ('302', 20, to_date('2016-06-09', 'yyyy-mm-dd'));
+--insert into stock values ('401', 10, to_date('2016-06-15', 'yyyy-mm-dd'));
+--insert into stock values ('402', 7, to_date('2016-05-08', 'yyyy-mm-dd'));
+--
+----17
+--alter table product
+--add (비고 char(5));
+--select *
+--from product;
+--
+----19 비고열의 구조 변경
+--alter table product
+--modify(비고 varchar2(10));
+--desc product;
+--
+----21 비고열 삭제
+--alter table product
+--drop(비고);
+--
+----23 product 테이블 이름 변경
+--rename product to product1;
+--
+----25 product 내의 모든 데이터 삭제
+--truncate table product1;
+--
+----27 상품정보 테이블 삭제
+--drop table product1;
+--rollback;
+--
+----29
+--alter table stock
+--add constraint f_p_code foreign key (p_code)
+--reference product(p_code);
+--
+----31
+--create or replace view v_trade
+--as select * from trade;
+--
+--select *
+--from v_trade;
+
