@@ -1,0 +1,9 @@
+# 폴더에 상관없이 하둡에 만들고 수정할 수 있는 코드
+hadoop fs -mkdir in1
+# 그 폴더에 있어야 그 파일을 보낼수  있기 때문에 잠시 그 폴더에 가서 보내줘야 함
+hadoop fs -put obama /user/root/in1
+# hadoop example 이 하둡 폴더에 있기 때문에 하둡에 가서 실행해 줘야 하는 코드
+hadoop jar hadoop-examples-1.0.4.jar wordcount /user/root/in1/obama/obama.txt out1
+
+hadoop fs -cat /user/root/out1/part-r-00000>>/mnt/hgfs/Temp/o_test
+
