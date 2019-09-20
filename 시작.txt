@@ -1,0 +1,11 @@
+# su -> 비밀번호
+
+# sps ips mr tr 입력
+
+# snamenode 에서 위 입력
+
+# hadoop namenode -format 
+
+# start-all.sh
+
+# jps 확인
